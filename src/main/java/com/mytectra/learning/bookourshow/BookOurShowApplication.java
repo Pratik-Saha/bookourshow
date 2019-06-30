@@ -37,7 +37,18 @@ public class BookOurShowApplication {
 		System.out.println("Booking Id - " + booking.getId());
 		System.out.println("Movie Name - " + movie.getMovieName());
 		System.out.println("Price - " + booking.getPrice() + " Rs");
+		System.out.println("Tax - " + booking.getTax() + " Rs");
+		System.out.println("------------------------------------");
+		System.out.println("TOTAL - "+ booking.getTotalPrice());
 		System.out.println("______________________________________");
+		for(String msg : booking.getOffersApplied()) {
+			System.out.println("* "+msg);
+		}
+		for(String msg : booking.getPricingInfo()) {
+			System.out.println("* "+msg);
+		}
+			
+		
 	}
 
 }

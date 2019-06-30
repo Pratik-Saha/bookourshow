@@ -7,7 +7,7 @@ import com.mytectra.learning.bookourshow.entity.Booking;
 import com.mytectra.learning.bookourshow.entity.Ticket;
 
 @Component
-public class SimplePricingWithTax  implements Pricing{
+public class PricingWithTax  implements Pricing{
 
 	@Value("${gov.india.tax}")
 	private double tax;
@@ -16,12 +16,15 @@ public class SimplePricingWithTax  implements Pricing{
 	@Override
 	public void price(Booking booking) {
 		double price = 0;
-		for(Ticket  ticket :booking.getTickets())
-		{
-			price += ticket.getPrice();
+		for (Ticket ticket : booking.getTickets()) {
+			if (!ticket.isDiscounted()) {
+				price += ticket.getPrice();
+			}
 		}
-		price += price * (tax/100);
 		booking.setPrice(price);
+		double taxedAmt = price * (tax/100);
+		booking.appendPricingInfo(String.format("%f Tax applied = %f ",tax , taxedAmt ));
+		booking.setTax(taxedAmt);
 	}
 
 }

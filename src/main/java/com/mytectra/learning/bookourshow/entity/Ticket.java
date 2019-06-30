@@ -18,6 +18,8 @@ public class Ticket {
 	
 	private double price;
 	
+	private boolean discounted;
+	
 	public Ticket(long id ,Movie movie, TicketType ticketType, double price) {
 		this.id = id;
 		this.movie = movie;
@@ -56,6 +58,16 @@ public class Ticket {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	public boolean isDiscounted() {
+		return discounted;
+	}
+
+	public void setDiscounted(boolean discounted) {
+		this.discounted = discounted;
+	}
+	
+	
 	
 	
 	
