@@ -1,6 +1,6 @@
 package com.mytectra.learning.bookourshow.core;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,19 +13,32 @@ import com.mytectra.learning.bookourshow.offer.Offer;
 import com.mytectra.learning.bookourshow.pricing.Pricing;
 import com.mytectra.learning.bookourshow.tickets.TicketVendor;
 import com.mytectra.learning.bookourshow.tickets.TicketingExecption;
-
 @Component
 public class BookOurShow {
 	
-	@Autowired
+	
 	private TicketVendor ticketVendor;
 	
-	@Autowired
+	
 	private Pricing pricing;
 	
-	@Autowired
+	
 	private Offer offer;
 	
+	
+	
+	public BookOurShow(TicketVendor ticketVendor, Pricing pricing, Offer offer) {
+		super();
+		this.ticketVendor = ticketVendor;
+		this.pricing = pricing;
+		this.offer = offer;
+	}
+
+
+
+
+
+
 	public Booking bookTickets(Movie movie , TicketType ticketType ,  int numberOfTickets) throws TicketingExecption {
 		 List<Ticket> tickets = ticketVendor.getTickets(movie, ticketType, numberOfTickets);
 		 Booking booking = new Booking();

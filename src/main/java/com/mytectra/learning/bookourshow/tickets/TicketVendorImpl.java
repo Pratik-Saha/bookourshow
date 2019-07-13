@@ -9,7 +9,6 @@ import com.mytectra.learning.bookourshow.entity.Movie;
 import com.mytectra.learning.bookourshow.entity.Ticket;
 import com.mytectra.learning.bookourshow.entity.Ticket.TicketType;
 
-@Component
 public class TicketVendorImpl implements TicketVendor {
 
 	List<Ticket> tickets = new ArrayList<Ticket>();

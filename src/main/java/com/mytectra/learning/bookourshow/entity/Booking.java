@@ -12,8 +12,14 @@ public class Booking {
 	private List<Ticket> tickets;
 	
 	private double tax;
-
+	
+	private double discount;
+	
+	private double discountedPrice;
+	
 	private double price;
+	
+	private double grandTotal;
 	
 	private List<String> offersApplied = new ArrayList<String>();
 	
@@ -69,10 +75,8 @@ public class Booking {
 		this.pricingInfo.add(pricingInfo);
 	}
 	
-	public double getTotalPrice() {
-		return tax + price;
-	}
 	
+
 	public double getTax() {
 		return tax;
 	}
@@ -81,4 +85,28 @@ public class Booking {
 		this.tax = tax;
 	}
 
+	public double getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(double discount) {
+		this.discount = discount;
+	}
+	
+	public double getDiscountedPrice() {
+		return discountedPrice;
+	}
+	
+	public void setDiscountedPrice(double discountedPrice) {
+		this.discountedPrice = discountedPrice;
+	}
+	
+	public void setGrandTotal(double grandTotal) {
+		this.grandTotal = grandTotal;
+	}
+	
+	public double getGrandTotal() {
+		return grandTotal;
+	}
 }
+
