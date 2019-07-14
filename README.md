@@ -7,3 +7,6 @@ To Provide Cash Back offer instead of 'Buy2GetOneFree'
 output -
 should have offer infos
 Discounted Price in the output
+
+<13-Jul-19>
+Write 100% UT coverge for PrincingWithTax

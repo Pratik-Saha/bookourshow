@@ -10,7 +10,6 @@ import com.mytectra.learning.bookourshow.offer.Buy2GetOneFreeOffer;
 import com.mytectra.learning.bookourshow.offer.CashBackOffer;
 import com.mytectra.learning.bookourshow.offer.Offer;
 import com.mytectra.learning.bookourshow.pricing.Pricing;
-import com.mytectra.learning.bookourshow.pricing.PricingWithTax;
 import com.mytectra.learning.bookourshow.tickets.TicketVendor;
 import com.mytectra.learning.bookourshow.tickets.TicketVendorImpl;
 
@@ -24,10 +23,6 @@ public class bookOurShowConfig {
 		
 	}
 	
-	@Bean
-	public Pricing pricingWithText() {
-		return new PricingWithTax();
-	}
 	
 	@Bean
 	public TicketVendor ticketVendorImpl() {

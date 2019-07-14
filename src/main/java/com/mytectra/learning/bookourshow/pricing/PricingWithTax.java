@@ -11,6 +11,10 @@ public class PricingWithTax  implements Pricing{
 	@Value("${gov.india.tax}")
 	private double tax;
 	
+	public void setTax(double tax) {
+		this.tax = tax;
+	}
+	
 	public void price(Booking booking) {
 		double price = 0;
 		double discoundtedPrice = 0;

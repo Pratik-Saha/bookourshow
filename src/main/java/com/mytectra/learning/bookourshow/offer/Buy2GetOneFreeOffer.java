@@ -25,4 +25,4 @@ public class Buy2GetOneFreeOffer implements Offer {
 		}
 	}
 
-}
+} 

@@ -34,11 +34,6 @@ public class BookOurShow {
 		this.offer = offer;
 	}
 
-
-
-
-
-
 	public Booking bookTickets(Movie movie , TicketType ticketType ,  int numberOfTickets) throws TicketingExecption {
 		 List<Ticket> tickets = ticketVendor.getTickets(movie, ticketType, numberOfTickets);
 		 Booking booking = new Booking();
@@ -48,7 +43,6 @@ public class BookOurShow {
 		 offer.applyOffer(booking);
 		 pricing.price(booking);
 		 return booking;
-		
 	}
 
 }
