@@ -10,3 +10,7 @@ Discounted Price in the output
 
 <13-Jul-19>
 Write 100% UT coverge for PrincingWithTax
+
+<21-Jul-19>
+Filter based on Actor name and Director Name,
+Add some fields like IMDB, Release Date

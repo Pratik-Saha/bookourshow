@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import com.mytectra.learning.bookourshow.entity.Booking;
 import com.mytectra.learning.bookourshow.entity.Ticket;
 
+@Component
 public class PricingWithTax  implements Pricing{
 
 	@Value("${gov.india.tax}")

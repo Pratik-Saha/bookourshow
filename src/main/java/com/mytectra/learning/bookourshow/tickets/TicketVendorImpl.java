@@ -29,12 +29,12 @@ public class TicketVendorImpl implements TicketVendor {
 	}
 
 	@Override
-	public boolean loadTickets(Movie movie, TicketType ticketType, double price, int count) throws TicketingExecption {
+	public void loadTickets(Movie movie, TicketType ticketType, double price, int count) throws TicketingExecption {
 		for (int i = 0; i < count; i++) {
 			Ticket ticket = new Ticket( i , movie, ticketType, price);
 			tickets.add(ticket);
 		}
-		return true;
+		//return true; 
 	}
 
 }

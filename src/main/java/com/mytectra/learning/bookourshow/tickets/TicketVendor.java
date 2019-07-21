@@ -11,5 +11,5 @@ public interface TicketVendor {
 	
 	List<Ticket> getTickets(Movie movie, TicketType ticketType , int count ) throws TicketingExecption;
 
-	boolean loadTickets(Movie movie, TicketType ticketType ,double price ,  int count ) throws TicketingExecption;
+	void loadTickets(Movie movie, TicketType ticketType ,double price ,  int count ) throws TicketingExecption;
 }
