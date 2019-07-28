@@ -14,3 +14,7 @@ Write 100% UT coverge for PrincingWithTax
 <21-Jul-19>
 Filter based on Actor name and Director Name,
 Add some fields like IMDB, Release Date
+
+<27-Jul-19>
+Valiadtion for Tickets and Booking API 
+Id to be genrated , Do not load duplicate movie (250 BMS)

@@ -5,11 +5,13 @@ import java.util.List;
 import com.mytectra.learning.bookourshow.entity.Movie;
 
 public interface MovieService {
-
+	
 	void loadMovie(Movie movie);
 	
-	//Tempory
 	List<Movie> listMovies();
 	
-	//List<Movie> search(SearchCitera sc)
+	Movie getMovieById(int id);
+	
+	List<Movie> search(String actorNameStartsWith , String dirStartsWith , String movieNameStartsWith);
+	
 }

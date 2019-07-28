@@ -1,55 +1,41 @@
 package com.mytectra.learning.bookourshow.web;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.mytectra.learning.bookourshow.entity.Movie;
 import com.mytectra.learning.bookourshow.service.MovieService;
 
-@Controller
+@RestController
 @RequestMapping(path = "/bos")
 public class MoviesController {
 
 	@Autowired
 	private MovieService service;
 
-	@GetMapping(path = "/movies")
-	public @ResponseBody List<Movie> searchMovies(@RequestParam(required = false, name = "startsWith") String str) {
-		List<Movie> movies = service.listMovies();
+	@GetMapping(path = "/movies" , produces = {"application/xml"} , consumes = {"application/xml"} )
+	public List<Movie> searchMovies(@RequestParam(required = false, name = "nameStartsWith") String movieName,
+			@RequestParam(required = false, name = "actorNameStartsWith") String actorName ,
+			@RequestParam(required = false, name = "dirNameStartsWith") String dirName) {
 
-		if (str != null) {
-			Iterator<Movie> itr = movies.iterator();
-			while (itr.hasNext()) {
-				Movie movie = itr.next();
-				if (!movie.getMovieName().startsWith(str)) {
-					itr.remove();
-				}
-			}
-		}
-
-		/*
-		 * return movies .stream() .filter(movie ->
-		 * !movie.getMovieName().startsWith(str)) .collect(Collectors.toList());
-		 */
+		List<Movie> movies = service.search(actorName, dirName, movieName);
 		return movies;
 
 	}
+	
+	
 
-	@PostMapping(path = "/movies")
-	public @ResponseBody String loadMovie(@RequestBody Movie movie) {
+	@PostMapping(path = "/movies" , consumes = {"application/json"})
+	public String loadMovie(@Validated @RequestBody Movie movie) {
 		service.loadMovie(movie);
 		return "{'status' : 'suceessfull'}";
 	}

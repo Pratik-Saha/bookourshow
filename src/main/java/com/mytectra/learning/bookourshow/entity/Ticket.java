@@ -20,6 +20,7 @@ public class Ticket {
 	
 	private boolean discounted;
 	
+	
 	public Ticket(long id ,Movie movie, TicketType ticketType, double price) {
 		this.id = id;
 		this.movie = movie;

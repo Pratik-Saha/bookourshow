@@ -9,6 +9,7 @@ import com.mytectra.learning.bookourshow.entity.Movie;
 import com.mytectra.learning.bookourshow.entity.Ticket;
 import com.mytectra.learning.bookourshow.entity.Ticket.TicketType;
 
+
 public class TicketVendorImpl implements TicketVendor {
 
 	List<Ticket> tickets = new ArrayList<Ticket>();
@@ -25,10 +26,11 @@ public class TicketVendorImpl implements TicketVendor {
 			 }
 					 
 		 }
-		throw new TicketingExecption("Not Found");
+		throw new TicketingExecption("Not Tickets Found");
 	}
 
 	@Override
+	
 	public void loadTickets(Movie movie, TicketType ticketType, double price, int count) throws TicketingExecption {
 		for (int i = 0; i < count; i++) {
 			Ticket ticket = new Ticket( i , movie, ticketType, price);
