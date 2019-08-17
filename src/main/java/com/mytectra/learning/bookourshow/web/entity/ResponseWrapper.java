@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import net.bytebuddy.agent.builder.AgentBuilder.CircularityLock.Inactive;
+//import net.bytebuddy.agent.builder.AgentBuilder.CircularityLock.Inactive;
 
 @JsonInclude(value = Include.NON_EMPTY)
 public class ResponseWrapper<T> {
