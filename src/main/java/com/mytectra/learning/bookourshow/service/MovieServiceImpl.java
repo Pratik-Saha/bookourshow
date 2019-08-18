@@ -54,14 +54,12 @@ public class MovieServiceImpl implements MovieService {
 		if (mov != null) {
 			throw new MovieAlreadyExistsException("Movie already exists with same Id " + mov.getMovieName());
 		}*/
-		List<Movie> movies = listMovie();
-		Iterator<Movie> itr2 = movies.iterator();
-		while (itr2.hasNext()) {
-			Movie mov = itr2.next();
-			if (mov.getId() == movie.getId()) {
-				throw new MovieAlreadyExistsException("same id movie already exists");
-			}
-		}
+		/*
+		 * List<Movie> movies = listMovie(); Iterator<Movie> itr2 = movies.iterator();
+		 * while (itr2.hasNext()) { Movie mov = itr2.next(); if (mov.getId() ==
+		 * movie.getId()) { throw new
+		 * MovieAlreadyExistsException("same id movie already exists"); } }
+		 */
 		this.movies.add(movie);
 	}
 

@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
@@ -32,7 +33,7 @@ public class Movie {
 	@PositiveOrZero(message = "cannot be negative")
 	private int imdb;
 	
-	@NotNull
+	@NotNull(message = "Movie release date cannot be null")
 	@JsonFormat(lenient = OptBoolean.FALSE , pattern = "dd-MM-yyyy")
 	private Date releaseDate;
 

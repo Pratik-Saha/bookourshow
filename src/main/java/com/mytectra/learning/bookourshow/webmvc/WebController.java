@@ -2,6 +2,10 @@ package com.mytectra.learning.bookourshow.webmvc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,27 +16,46 @@ import com.mytectra.learning.bookourshow.web.exception.MovieNotFoundException;
 
 @Controller
 public class WebController {
-	
+
 	@Autowired
 	private MovieService service;
-	
+
 	@RequestMapping("/home")
-	public String home() {
-		return "index";
+	public ModelAndView listMovies() {
+		ModelAndView modelAndView = new ModelAndView("movie_home");
+		modelAndView.addObject("movies", service.listMovie());
+		return modelAndView;
 	}
-	
-	@RequestMapping("/home2")
-	public ModelAndView home2() {
-		ModelAndView mvm = new ModelAndView("index");
-		mvm.addObject("name", "Jayaram");
-		return mvm;
+
+	@RequestMapping("/movie_form")
+	public ModelAndView getForm() {
+		Movie movie = new Movie();
+		// Internal
+		ModelAndView modelAndView = new ModelAndView("forward:/home");
+		modelAndView.addObject("movie", movie);
+		return modelAndView;
 	}
-	
-	@RequestMapping("/get_form")
-	public String getForm() {
-		return "movieForm";
+
+	@RequestMapping("/movie_load")
+	public ModelAndView loadMovie(@Validated @ModelAttribute Movie movie, BindingResult result , Model model ) {
+		// From Browserde
+
+		ModelAndView modelAndView = new ModelAndView();
+		
+		try {
+			if (!result.hasErrors()) {
+				service.loadMovie(movie);
+				modelAndView.setViewName("redirect:/home");
+				modelAndView.addObject("message", "Movie added sucessfully");
+			} else {
+				return new ModelAndView("forward:/home");
+			}
+		} catch (Exception e) {
+			return new ModelAndView("error");
+		}
+		return modelAndView;
 	}
-	
+
 	@RequestMapping("/get_details")
 	public ModelAndView getMovieDetails(@RequestParam("movie_id") int id) {
 		ModelAndView mvm = new ModelAndView("movie");
@@ -40,7 +63,7 @@ public class WebController {
 		try {
 			movie = service.getMovieById(id);
 		} catch (MovieNotFoundException e) {
-			
+
 			return new ModelAndView("error");
 		}
 		mvm.addObject("movie", movie);
