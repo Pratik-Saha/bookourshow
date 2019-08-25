@@ -9,66 +9,40 @@ import java.util.UUID;
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.mytectra.learning.bookourshow.dao.MovieDao;
 import com.mytectra.learning.bookourshow.entity.Movie;
 import com.mytectra.learning.bookourshow.web.exception.MovieAlreadyExistsException;
 import com.mytectra.learning.bookourshow.web.exception.MovieNotFoundException;
 
+@Component
+public class MovieServiceWithDaoImpl implements MovieService {
 
-public class MovieServiceImpl implements MovieService {
-
-	private List<Movie> movies = new ArrayList<Movie>();
+	@Autowired
+	private MovieDao movieDao;
 
 	@PostConstruct
 	public void init() {
 
 		System.out.println("This is called after creation of the bean");
 
-		Movie movie1 = new Movie();
-		movie1.setId(1);
-		movie1.setMovieName("msdtus");
-		movie1.setInfo("English");
-		movie1.setActorName("susant");
-		movie1.setDirectorName("karan");
-		movie1.setImdb(7);
-		movie1.setReleaseDate(new Date(2019 - 10 - 12));
-
-		Movie movie2 = new Movie();
-		movie2.setId(2);
-		movie2.setMovieName("super30");
-		movie2.setInfo("English");
-		movie2.setActorName("ritwick");
-		movie2.setDirectorName("kjr");
-		movie2.setImdb(9);
-		movie2.setReleaseDate(new Date(2019 - 12 - 25));
-
-		movies.add(movie1);
-		movies.add(movie2);
-
 	}
 
 	@Override
 	public void loadMovie(Movie movie) throws MovieAlreadyExistsException {
-		/*Movie mov = getMovieById(movie.getId());
-		if (mov != null) {
-			throw new MovieAlreadyExistsException("Movie already exists with same Id " + mov.getMovieName());
-		}*/
+		try {
+			Movie mov = getMovieById(movie.getId());
+		} catch (MovieNotFoundException e) {
+			movieDao.saveMovie(movie);
+		}
 		
-		  List<Movie> movies = listMovie(); 
-		  Iterator<Movie> itr2 = movies.iterator();
-		  while (itr2.hasNext()) {
-		  Movie mov = itr2.next(); 
-		  if (mov.getId() == movie.getId()) { 
-		  throw new MovieAlreadyExistsException("same id movie already exists"); } }
-		 
-		this.movies.add(movie);
 	}
 
 	@Override
 	public List<Movie> listMovie() {
-
-		return new ArrayList<Movie>(movies);
+		return movieDao.getAllMovies();
 	}
 
 	@Override
@@ -110,24 +84,18 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public Movie getMovieById(int id) throws MovieNotFoundException {
-		List<Movie> movies = listMovie();
-		Iterator<Movie> itr2 = movies.iterator();
-		while (itr2.hasNext()) {
-			Movie movie = itr2.next();
-			if (movie.getId() == id) {
-				return movie;
-			}
-		
+		Movie movie = movieDao.findMovieById(id);
+		if(movie == null) {
+			throw new MovieNotFoundException("Movie Does not exists for Id " + id );
 		}
-		//return null;
-		throw new MovieNotFoundException("movie not found!!");
+		return movie;
 	}
 
 	@Override
 	public boolean deleteMovie(int id) throws MovieNotFoundException {
 		Movie movie = getMovieById(id);
 		if(movie != null) {
-			movies.remove(movie);
+			movieDao.delete(movie);
 			//return true;
 		}
 		return true;
@@ -137,9 +105,7 @@ public class MovieServiceImpl implements MovieService {
 	public boolean updateMovie(int id , Movie movie) throws MovieNotFoundException {
 		Movie mov = getMovieById(id);
 		if(mov.getId() == movie.getId()) {
-			movies.remove(mov);
-			movies.add(movie);
-			//return true;
+			movieDao.update(movie);
 		}
 		return true;
 		

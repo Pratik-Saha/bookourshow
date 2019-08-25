@@ -1,7 +1,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="core" %>
 <html>
-<h3>${param['message']}</h3>
+<h3>${param['message']}</h3> <!-- redirect -->
 <h3>${requestScope['message']}</h3>
 <h3>${message}</h3>
 
@@ -20,6 +20,7 @@
 		<input type = "reset"/>
 		</form:form>
 		</core:if>
+		
 		<core:if test="${!editAction}">
 		<form:form action="/movie_load" method="POST"  modelAttribute="movie">
 		Id - <form:input path="id"/> <font color="RED" ><form:errors path="id"/></font></br>

@@ -101,6 +101,7 @@ public class WebController {
 				return new ModelAndView("forward:/home");
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ModelAndView("error");
 		}
 		return modelAndView;
@@ -130,18 +131,24 @@ public class WebController {
 	
 	//Non spring
 	/*
-	 * @RequestMapping("/movie_cart") public String
-	 * cart(@RequestParam(required = true) Integer id , HttpSession session ,
-	 * HttpServletRequest request ) throws MovieNotFoundException { Movie movie =
-	 * service.getMovieById(id); List<Movie> requestScope = (List<Movie>)
-	 * request.getAttribute("rc_movies"); if(requestScope == null) { requestScope =
-	 * new ArrayList<Movie>(); } requestScope.add(movie);
+	 * @RequestMapping("/movie_cart") 
+	 * public String cart(@RequestParam(required = true) Integer id , HttpSession session , HttpServletRequest request ) throws MovieNotFoundException { 
+	 * Movie movie = service.getMovieById(id); 
+	 * List<Movie> requestScope = (List<Movie>)request.getAttribute("rc_movies"); 
+	 * if(requestScope == null) { 
+	 * requestScope = new ArrayList<Movie>(); 
+	 * }
+	 * requestScope.add(movie);
 	 * request.setAttribute("rc_movies", requestScope);
 	 * 
-	 * List<Movie> sessionScope = (List<Movie>)
-	 * session.getAttribute("session_movies"); if(sessionScope == null) {
-	 * sessionScope = new ArrayList<Movie>(); } sessionScope.add(movie);
-	 * session.setAttribute("session_movies", sessionScope); return "forward:/home";
+	 * List<Movie> sessionScope = (List<Movie>)session.getAttribute("session_movies"); 
+	 * if(sessionScope == null) {
+	 * sessionScope = new ArrayList<Movie>(); 
+	 * }
+	 *  sessionScope.add(movie);
+	 * session.setAttribute("session_movies", sessionScope); 
+	 * 
+	 * 	return "forward:/home";
 	 * }
 	 */
 	
