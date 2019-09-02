@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import com.mytectra.learning.bookourshow.web.exception.MovieAlreadyExistsExcepti
 import com.mytectra.learning.bookourshow.web.exception.MovieNotFoundException;
 
 @Component
+@Transactional
 public class MovieServiceWithDaoImpl implements MovieService {
 
 	@Autowired

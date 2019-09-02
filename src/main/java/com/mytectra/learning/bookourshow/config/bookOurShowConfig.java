@@ -17,18 +17,19 @@ import com.mytectra.learning.bookourshow.tickets.TicketVendorImpl;
 @Configuration
 public class bookOurShowConfig {
 	
-	@Bean
-	public BookOurShow bos(TicketVendor ticketVendor, Pricing pricing,@Qualifier("cashBackOffer") Offer offer) 
-	{
-		return new BookOurShow(ticketVendor, pricing, offer);
-		
-	}
+	/*
+	 * @Bean public BookOurShow bos(TicketVendor ticketVendor, Pricing
+	 * pricing,@Qualifier("cashBackOffer") Offer offer) { return new
+	 * BookOurShow(ticketVendor, pricing, offer);
+	 * 
+	 * }
+	 */
 	
 	
-	@Bean
-	public TicketVendor ticketVendorImpl() {
-		 return new TicketVendorImpl();
-	 }
+	/*
+	 * @Bean public TicketVendor ticketVendorImpl() { return new TicketVendorImpl();
+	 * }
+	 */
 	
 	@Bean
 	public Offer buy2GetOneFreeOffer() {

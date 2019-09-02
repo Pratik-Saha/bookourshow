@@ -38,6 +38,7 @@ public class TicketLoadRequest {
 		this.price = price;
 	}
 
+
 	public TicketType getTicketType() {
 		return ticketType;
 	}
@@ -51,6 +52,17 @@ public class TicketLoadRequest {
 	}
 
 	public void setCount(int count) {
+		this.count = count;
+	}
+	
+	public TicketLoadRequest(@NotNull @Positive(message = "movie id can not be negative") int movieId,
+			@NotNull @Positive(message = "price of ticket can not be negative") double price,
+			@NotNull TicketType ticketType,
+			@NotNull @Positive(message = "number of ticket can not be negative") int count) {
+		super();
+		this.movieId = movieId;
+		this.price = price;
+		this.ticketType = ticketType;
 		this.count = count;
 	}
 	

@@ -1,9 +1,27 @@
 package com.mytectra.learning.bookourshow.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+
+@Entity
+@NamedQuery(name = "load_tickets" , query = "select t from Ticket t where t.movie = ?1 and t.ticketType = ?2")
 public class Ticket {
 	
+	@Id
+	@Column(name = "ticketId")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	@ManyToOne
+	@JoinColumn(name = "movieId")
 	private Movie movie;
 	
 	public enum TicketType {
@@ -12,18 +30,33 @@ public class Ticket {
 		PLATINUM
 	}
 	
-	
+	@Column(name = "ticketType")
+	@Enumerated(EnumType.STRING)
 	private TicketType ticketType;
 	
+	@Column(name = "price")
 	private double price;
 	
+	@Column(name = "discounted")
 	private boolean discounted;
 	
+	
+	
+	public Ticket() {
+	}	
+
 	public Ticket(long id ,Movie movie, TicketType ticketType, double price) {
 		this.id = id;
 		this.movie = movie;
 		this.ticketType = ticketType;
 		this.price = price;
+	}
+	
+	public Ticket(Movie movie, TicketType ticketType, double price) {
+		this.movie = movie;
+		this.ticketType = ticketType;
+		this.price = price;
+		//this.count = count;
 	}
 
 	public long getId() {
@@ -65,7 +98,6 @@ public class Ticket {
 	public void setDiscounted(boolean discounted) {
 		this.discounted = discounted;
 	}
-	
 	
 	
 	

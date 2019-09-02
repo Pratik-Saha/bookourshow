@@ -2,46 +2,59 @@ package com.mytectra.learning.bookourshow.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.OptBoolean;
 
+@Entity
+@Table(name = "movies")
 public class Movie {
 	
 	@NotNull
 	@Positive(message = "Id cannot be negative")
-	private int id;
+	@Id
+	private Integer id;
 	
+	@Column(name = "movie_name" ,nullable = false)
 	@NotBlank(message = "Movie name cannot be null")
 	private String movieName;
 	
+	@Column	
 	private String info;
 	
+	@Column(name = "actor_name")
 	@NotBlank(message = "actor name cannot be null")
 	private String actorName;
 	
+	@Column(name = "director_name")
 	@NotBlank(message = "director name cannot be null")
 	private String directorName;
 	
+	@Column
 	@Max(value = 10 , message = "cannot grater than 10")
 	@PositiveOrZero(message = "cannot be negative")
-	private int imdb;
+	private Integer imdb;
 	
+	@Column(name = "release_date")
 	@NotNull(message = "Movie release date cannot be null")
 	@JsonFormat(lenient = OptBoolean.FALSE , pattern = "dd-MM-yyyy")
 	private Date releaseDate;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -77,11 +90,11 @@ public class Movie {
 		this.directorName = directorName;
 	}
 
-	public int getImdb() {
+	public Integer getImdb() {
 		return imdb;
 	}
 
-	public void setImdb(int imdb) {
+	public void setImdb(Integer imdb) {
 		this.imdb = imdb;
 	}
 
@@ -92,6 +105,7 @@ public class Movie {
 	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
+
 	
 	
 	

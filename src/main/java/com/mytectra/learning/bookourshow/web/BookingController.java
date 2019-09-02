@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mytectra.learning.bookourshow.core.BookOurShow;
+import com.mytectra.learning.bookourshow.core.BookingServiceWithDaoImpl;
 import com.mytectra.learning.bookourshow.entity.Booking;
 import com.mytectra.learning.bookourshow.entity.Movie;
 import com.mytectra.learning.bookourshow.service.MovieService;
@@ -27,24 +28,29 @@ import com.mytectra.learning.bookourshow.web.exception.MovieNotFoundException;
 @RequestMapping(path = "/bookourshow")
 public class BookingController {
 	
-	@Autowired  
-	BookOurShow bookOurShowService;
+	//@Autowired  
+	//BookOurShow bookOurShowService;
 	
 	@Autowired
 	MovieService movieService;
 	
+	@Autowired
+	BookingServiceWithDaoImpl bookingService;
+	
 	@PostMapping(path = "/booking")
-	public  @ResponseBody ResponseWrapper<Booking> booktickets(@Validated @RequestBody BookingRequest request) throws TicketingException, MovieNotFoundException  
+	public  @ResponseBody ResponseWrapper<String> booktickets(@Validated @RequestBody BookingRequest request) throws TicketingException, MovieNotFoundException  
 	{
-		ResponseWrapper<Booking> response = new ResponseWrapper<>();
+		ResponseWrapper<String> response = new ResponseWrapper<>();
 		Movie movie = movieService.getMovieById(request.getMovieId());
 		/*if(movie == null)
 		{
 			throw new TicketingException("Movie not found");
 		}	*/
-		Booking booking =	bookOurShowService.bookTickets(movie, request.getTicketType(), request.getCount());
+		 //bookOurShowService.bookTickets(movie, request.getTicketType(), request.getCount());
+		 
+		bookingService.bookTickets(movie, request.getTicketType(), request.getCount());
 		response.setStatus(Status.SUCCESS);
-		response.setResponse(booking);
+		//response.setResponse(booking);
 		return response;
 		//return booking;
 	}

@@ -81,6 +81,7 @@ public class WebController {
 				return new ModelAndView("forward:/home");
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ModelAndView("error");
 		}
 		return modelAndView;

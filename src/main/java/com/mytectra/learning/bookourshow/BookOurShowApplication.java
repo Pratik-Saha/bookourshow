@@ -2,6 +2,7 @@ package com.mytectra.learning.bookourshow;
 
 import org.springframework.boot.SpringApplication; 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -15,6 +16,7 @@ import com.mytectra.learning.bookourshow.tickets.TicketingException;
 
 
 @SpringBootApplication(scanBasePackages = "com.mytectra.learning.bookourshow" )
+@EntityScan(basePackages = "com.mytectra.learning.bookourshow.entity")
 public class BookOurShowApplication {
 
 	public static void main(String[] args) throws TicketingException {
