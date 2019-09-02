@@ -19,6 +19,8 @@ public class TicketMapper implements RowMapper<Ticket> {
 		Ticket ticket = new Ticket();
 		Movie movie = new Movie();
 		movie.setId(rs.getInt("movieId"));
+		movie.setMovieName(rs.getString("movieName"));
+		
 		ticket.setId(rs.getInt("ticketId"));
 		ticket.setMovie(movie);
 		ticket.setPrice(rs.getDouble("price"));

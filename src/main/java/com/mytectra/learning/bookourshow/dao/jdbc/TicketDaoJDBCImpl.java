@@ -15,7 +15,7 @@ import com.mytectra.learning.bookourshow.entity.Ticket;
 import com.mytectra.learning.bookourshow.entity.Ticket.TicketType;
 import com.mytectra.learning.bookourshow.web.entity.TicketLoadRequest;
 
-//@Component
+@Component
 public class TicketDaoJDBCImpl implements TicketDao {
 
 	@Autowired
@@ -24,13 +24,13 @@ public class TicketDaoJDBCImpl implements TicketDao {
 	@Autowired
 	private TicketMapper ticketMapper;
 	
-	private final String LOAD_TICKET = "insert into Ticket (movieId,price,ticketType) values (?,?,?)"; 
+	private final String LOAD_TICKET = "insert into Ticket (movieId,movieName,price,ticketType) values (?,?,?,?)"; 
 	
 	private final String GET_TICKET = "select * from Ticket where movieId = ? AND ticketType = ? LIMIT ?";
 	
 	@Override
 	public int saveTicket(Ticket ticket) {
-		return template.update(LOAD_TICKET,new Object[] {ticket.getMovie().getId(),ticket.getPrice(),ticket.getTicketType().toString()
+		return template.update(LOAD_TICKET,new Object[] {ticket.getMovie().getId(),ticket.getMovie().getMovieName(),ticket.getPrice(),ticket.getTicketType().toString()
 			});
 	
 	}

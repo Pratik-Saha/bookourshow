@@ -13,8 +13,7 @@ public class BookingDaoJDBCImpl implements BookingDao {
 	@Autowired
 	private JdbcTemplate template;
 	
-	private final String INSERT_BOOKING = "insert into Booking (bookingId,ticketType,ticketPrice,noOfTickets,movieId,"
-			+ "movieName,tax,discount,discountedPrice,price,grandTotal) values(?,?,?,?,?,?,?,?,?,?,?)";
+	private final String INSERT_BOOKING = "insert into Booking (bookingId,ticketType,ticketPrice,noOfTickets,movieId,movieName,tax,discount,discountedPrice,price,grandTotal) values(?,?,?,?,?,?,?,?,?,?,?)";
 
 	@Override
 	public int saveBooking(Booking booking) {
