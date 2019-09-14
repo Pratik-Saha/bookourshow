@@ -25,12 +25,6 @@ public class Ticket {
 	@JoinColumn(name = "movieId")
 	private Movie movie;
 	
-	public enum TicketType {
-		GOLD,
-		SILVER,
-		PLATINUM
-	}
-	
 	@Column(name = "ticketType")
 	@Enumerated(EnumType.STRING)
 	private TicketType ticketType;

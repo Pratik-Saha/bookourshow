@@ -21,7 +21,6 @@ import com.mytectra.learning.bookourshow.web.exception.MovieAlreadyExistsExcepti
 import com.mytectra.learning.bookourshow.web.exception.MovieNotFoundException;
 
 @Component
-@Primary
 @Transactional
 public class MovieServiceWithRepo implements MovieService {
 

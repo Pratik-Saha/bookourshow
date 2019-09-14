@@ -15,8 +15,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
+import com.mytectra.learning.bookourshow.aspect.Timmer;
 import com.mytectra.learning.bookourshow.dao.MovieDao;
 import com.mytectra.learning.bookourshow.entity.Movie;
+import com.mytectra.learning.bookourshow.entity.TicketType;
 
 @Component
 @Primary
@@ -59,9 +61,10 @@ public class MovieDaoHibernateImpl  implements MovieDao{
 	}
 
 	@Override
+	@Timmer
 	public List<Movie> getAllMovies() {
 		TypedQuery<Movie> query = manager.createQuery("FROM Movie m", Movie.class);
 		return query.getResultList();		
 	}
-
+	
 }

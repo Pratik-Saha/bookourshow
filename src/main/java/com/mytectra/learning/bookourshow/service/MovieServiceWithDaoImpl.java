@@ -12,6 +12,7 @@ import javax.transaction.Transactional.TxType;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import com.mytectra.learning.bookourshow.dao.MovieDao;
@@ -19,6 +20,8 @@ import com.mytectra.learning.bookourshow.entity.Movie;
 import com.mytectra.learning.bookourshow.web.exception.MovieAlreadyExistsException;
 import com.mytectra.learning.bookourshow.web.exception.MovieNotFoundException;
 @Component
+@Transactional
+@Primary
 public class MovieServiceWithDaoImpl implements MovieService {
 
 	@Autowired

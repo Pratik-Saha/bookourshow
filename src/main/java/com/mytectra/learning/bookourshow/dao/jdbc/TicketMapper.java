@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.mytectra.learning.bookourshow.entity.Movie;
 import com.mytectra.learning.bookourshow.entity.Ticket;
-import com.mytectra.learning.bookourshow.entity.Ticket.TicketType;
+import com.mytectra.learning.bookourshow.entity.TicketType;
 import com.mytectra.learning.bookourshow.web.entity.TicketLoadRequest;
 
 @Component

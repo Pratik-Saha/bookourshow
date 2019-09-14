@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mytectra.learning.bookourshow.entity.Movie;
 import com.mytectra.learning.bookourshow.entity.Ticket;
-import com.mytectra.learning.bookourshow.entity.Ticket.TicketType;
 import com.mytectra.learning.bookourshow.service.MovieService;
 import com.mytectra.learning.bookourshow.tickets.TicketVendor;
 import com.mytectra.learning.bookourshow.tickets.TicketingException;

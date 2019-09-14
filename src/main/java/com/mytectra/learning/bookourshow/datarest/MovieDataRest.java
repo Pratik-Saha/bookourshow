@@ -1,4 +1,4 @@
-package com.mytectra.learning.bookourshow.dao.orm;
+package com.mytectra.learning.bookourshow.datarest;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;

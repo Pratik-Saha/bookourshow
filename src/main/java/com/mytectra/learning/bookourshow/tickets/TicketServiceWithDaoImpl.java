@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.mytectra.learning.bookourshow.dao.TicketDao;
 import com.mytectra.learning.bookourshow.entity.Movie;
 import com.mytectra.learning.bookourshow.entity.Ticket;
-import com.mytectra.learning.bookourshow.entity.Ticket.TicketType;
+import com.mytectra.learning.bookourshow.entity.TicketType;
 import com.mytectra.learning.bookourshow.web.entity.TicketLoadRequest;
 
 @Component
@@ -23,7 +23,7 @@ public class TicketServiceWithDaoImpl implements TicketVendor {
 
 	@Override
 	public List<Ticket> getTickets(Movie movie, TicketType ticketType, int count) throws TicketingException {
-		return ticketDao.getTicket(movie,ticketType,count);
+		return ticketDao.findTickets(movie,ticketType,count);
 	}
 
 	@Override

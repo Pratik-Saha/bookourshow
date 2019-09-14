@@ -9,7 +9,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.mytectra.learning.bookourshow.core.BookOurShow;
 import com.mytectra.learning.bookourshow.entity.Booking;
 import com.mytectra.learning.bookourshow.entity.Movie;
-import com.mytectra.learning.bookourshow.entity.Ticket.TicketType;
 import com.mytectra.learning.bookourshow.offer.CashBackOffer;
 import com.mytectra.learning.bookourshow.tickets.TicketVendor;
 import com.mytectra.learning.bookourshow.tickets.TicketingException;

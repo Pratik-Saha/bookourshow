@@ -12,7 +12,7 @@ import com.mytectra.learning.bookourshow.dao.BookingDao;
 import com.mytectra.learning.bookourshow.entity.Booking;
 import com.mytectra.learning.bookourshow.entity.Movie;
 import com.mytectra.learning.bookourshow.entity.Ticket;
-import com.mytectra.learning.bookourshow.entity.Ticket.TicketType;
+import com.mytectra.learning.bookourshow.entity.TicketType;
 import com.mytectra.learning.bookourshow.offer.Offer;
 import com.mytectra.learning.bookourshow.pricing.Pricing;
 import com.mytectra.learning.bookourshow.tickets.TicketVendor;

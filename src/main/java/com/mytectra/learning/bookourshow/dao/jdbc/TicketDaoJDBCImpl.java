@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import com.mytectra.learning.bookourshow.dao.TicketDao;
 import com.mytectra.learning.bookourshow.entity.Movie;
 import com.mytectra.learning.bookourshow.entity.Ticket;
-import com.mytectra.learning.bookourshow.entity.Ticket.TicketType;
+import com.mytectra.learning.bookourshow.entity.TicketType;
 import com.mytectra.learning.bookourshow.web.entity.TicketLoadRequest;
 
 @Component
@@ -36,7 +36,7 @@ public class TicketDaoJDBCImpl implements TicketDao {
 	}
 
 	@Override
-	public List<Ticket> getTicket(Movie movie,TicketType ticketType, int count) {
+	public List<Ticket> findTickets(Movie movie,TicketType ticketType, int count) {
 		List<Ticket> ticket = template.query(GET_TICKET, new Object[] {movie.getId(),ticketType.name(),count}, ticketMapper);
 		if(ticket == null || ticket.isEmpty() || ticket.size() < count) {
 			return null;

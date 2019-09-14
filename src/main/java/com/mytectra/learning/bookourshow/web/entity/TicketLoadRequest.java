@@ -3,7 +3,7 @@ package com.mytectra.learning.bookourshow.web.entity;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
-import com.mytectra.learning.bookourshow.entity.Ticket.TicketType;
+import com.mytectra.learning.bookourshow.entity.TicketType;
 
 public class TicketLoadRequest {
 	

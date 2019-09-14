@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import com.mytectra.learning.bookourshow.dao.TicketDao;
 import com.mytectra.learning.bookourshow.entity.Movie;
 import com.mytectra.learning.bookourshow.entity.Ticket;
-import com.mytectra.learning.bookourshow.entity.Ticket.TicketType;
+import com.mytectra.learning.bookourshow.entity.TicketType;
 
 @Component
 @Primary
@@ -42,7 +42,7 @@ public class TicketDaoHibernateImpl implements TicketDao {
 	
 	//Criteria
 	@Override
-	public List<Ticket> getTicket(Movie movie, TicketType ticketType, int count) {
+	public List<Ticket> findTickets(Movie movie, TicketType ticketType, int count) {
 		CriteriaBuilder builder = manager.getCriteriaBuilder();
 		CriteriaQuery<Ticket> query = builder.createQuery(Ticket.class);
 		Root<Ticket> path = query.from(Ticket.class);
