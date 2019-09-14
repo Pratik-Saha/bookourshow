@@ -8,21 +8,25 @@ import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
-import javax.transaction.Transactional.TxType;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import com.mytectra.learning.bookourshow.dao.MovieDao;
+import com.mytectra.learning.bookourshow.dao.orm.MovieDaoRepository;
 import com.mytectra.learning.bookourshow.entity.Movie;
 import com.mytectra.learning.bookourshow.web.exception.MovieAlreadyExistsException;
 import com.mytectra.learning.bookourshow.web.exception.MovieNotFoundException;
+
 @Component
-public class MovieServiceWithDaoImpl implements MovieService {
+@Primary
+@Transactional
+public class MovieServiceWithRepo implements MovieService {
 
 	@Autowired
-	private MovieDao movieDao;
+	private MovieDaoRepository movieDao;
 
 	@PostConstruct
 	public void init() {
@@ -36,18 +40,16 @@ public class MovieServiceWithDaoImpl implements MovieService {
 		try {
 			Movie mov = getMovieById(movie.getId());
 		} catch (MovieNotFoundException e) {
-			movieDao.saveMovie(movie);
+			movieDao.save(movie);
 		}
 		
 	}
-	
-	@Transactional(value = TxType.NEVER)
+
 	@Override
 	public List<Movie> listMovie() {
-		return movieDao.getAllMovies();
+		return movieDao.findAll();
 	}
 
-	@Transactional(value = TxType.NEVER)
 	@Override
 	public List<Movie> search(String actorNameStartsWith, String dirNameStartsWith, String movieNameStartsWith) {
 
@@ -87,7 +89,7 @@ public class MovieServiceWithDaoImpl implements MovieService {
 
 	@Override
 	public Movie getMovieById(int id) throws MovieNotFoundException {
-		Movie movie = movieDao.findMovieById(id);
+		Movie movie = movieDao.findById(id).get();
 		if(movie == null) {
 			throw new MovieNotFoundException("Movie Does not exists for Id " + id );
 		}
@@ -104,12 +106,11 @@ public class MovieServiceWithDaoImpl implements MovieService {
 		return true;
 	}
 
-	@Transactional(value = TxType.REQUIRED)
 	@Override
 	public boolean updateMovie(int id , Movie movie) throws MovieNotFoundException {
 		Movie mov = getMovieById(id);
 		if(mov.getId() == movie.getId()) {
-			movieDao.update(movie);
+			movieDao.save(movie);
 		}
 		return true;
 		

@@ -3,10 +3,14 @@ package com.mytectra.learning.bookourshow.dao.orm;
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 
 import com.mytectra.learning.bookourshow.dao.BookingDao;
 import com.mytectra.learning.bookourshow.entity.Booking;
 
+@Component
+@Primary
 public class BookingDaoHybernateImpl implements BookingDao {
 	
 	@Autowired
@@ -14,7 +18,8 @@ public class BookingDaoHybernateImpl implements BookingDao {
 
 	@Override
 	public int saveBooking(Booking booking) {
-			return 0;
+			manager.persist(booking);
+			return 1;
 	}
 
 }

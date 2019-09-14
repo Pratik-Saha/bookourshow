@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
 import org.hibernate.ejb.HibernateEntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +51,7 @@ public class MovieDaoHibernateImpl  implements MovieDao{
 		return 1;
 	}
 
+	@Transactional(value = TxType.MANDATORY )
 	@Override
 	public int delete(Movie movie) {
 		manager.remove(movie);

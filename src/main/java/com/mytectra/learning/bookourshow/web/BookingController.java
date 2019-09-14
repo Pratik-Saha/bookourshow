@@ -38,9 +38,9 @@ public class BookingController {
 	BookingServiceWithDaoImpl bookingService;
 	
 	@PostMapping(path = "/booking")
-	public  @ResponseBody ResponseWrapper<String> booktickets(@Validated @RequestBody BookingRequest request) throws TicketingException, MovieNotFoundException  
+	public  @ResponseBody ResponseWrapper<Booking> booktickets(@Validated @RequestBody BookingRequest request) throws TicketingException, MovieNotFoundException  
 	{
-		ResponseWrapper<String> response = new ResponseWrapper<>();
+		ResponseWrapper<Booking> response = new ResponseWrapper<>();
 		Movie movie = movieService.getMovieById(request.getMovieId());
 		/*if(movie == null)
 		{
@@ -48,9 +48,10 @@ public class BookingController {
 		}	*/
 		 //bookOurShowService.bookTickets(movie, request.getTicketType(), request.getCount());
 		 
-		bookingService.bookTickets(movie, request.getTicketType(), request.getCount());
+		Booking booking = bookingService.bookTickets(movie, request.getTicketType(), request.getCount());
 		response.setStatus(Status.SUCCESS);
-		//response.setResponse(booking);
+		
+		response.setResponse(booking);
 		return response;
 		//return booking;
 	}

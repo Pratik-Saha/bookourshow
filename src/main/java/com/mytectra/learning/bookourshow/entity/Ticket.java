@@ -11,10 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@NamedQuery(name = "load_tickets" , query = "select t from Ticket t where t.movie = ?1 and t.ticketType = ?2")
+@NamedQuery(name = "load_tickets" , query = "select t from Ticket t where t.movie = ?1 and t.ticketType = ?2 and t.booking is null")
 public class Ticket {
-	
 	@Id
 	@Column(name = "ticketId")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,8 +41,21 @@ public class Ticket {
 	@Column(name = "discounted")
 	private boolean discounted;
 	
+	@ManyToOne
+	@JoinColumn(name = "booking_id" ,nullable = true)
+	@JsonIgnore
+	private Booking booking;
 	
 	
+	
+	public Booking getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Booking booking) {
+		this.booking = booking;
+	}
+
 	public Ticket() {
 	}	
 

@@ -2,6 +2,8 @@ package com.mytectra.learning.bookourshow.core;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -17,6 +19,7 @@ import com.mytectra.learning.bookourshow.tickets.TicketVendor;
 import com.mytectra.learning.bookourshow.tickets.TicketingException;
 
 @Component
+@Transactional
 public class BookingServiceWithDaoImpl {
 	
 	private TicketVendor ticketVendor;
@@ -46,7 +49,11 @@ public class BookingServiceWithDaoImpl {
 		 
 		 offer.applyOffer(booking);
 		 pricing.price(booking);
+		 for(Ticket ticket : booking.getTickets()) {
+			 ticket.setBooking(booking);
+		 }
 		 bookingDao.saveBooking(booking);
+		 
 		 return booking;
 	}
 

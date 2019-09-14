@@ -3,26 +3,51 @@ package com.mytectra.learning.bookourshow.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name = "Booking")
 public class Booking {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "Booking_id")
 	private int id;
 	
 	//private User user;
 	
+	@OneToMany(mappedBy = "booking" , cascade = CascadeType.MERGE)
 	private List<Ticket> tickets;
-	
+
+	@Column(name = "tax")
 	private double tax;
 	
+	@Column(name = "discount")
 	private double discount;
 	
+	@Column(name = "Discounted_Price")
 	private double discountedPrice;
 	
+	@Column(name = "price")
 	private double price;
 	
+	@Column(name = "Grand_total")
 	private double grandTotal;
 	
+	@Transient
 	private List<String> offersApplied = new ArrayList<String>();
 	
+	@Transient
 	private List<String> pricingInfo = new ArrayList<String>();
 
 	public List<String> getPricingInfo() {
